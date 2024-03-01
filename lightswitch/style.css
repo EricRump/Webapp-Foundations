@@ -1,17 +1,29 @@
-#lightswitch {
+button {
   padding: 1rem;
   font-size: 3rem;
-  border: 5px solid yellow;
+  border: 5px solid green;
   background-color: lightgreen;
+  transition: background-color 1s ease;
   position: absolute;
   top: 40%;
   left: 40%;
 }
 
+.aus {
+  background-color: black;
+  transition: background-color 1s ease;
+  color: white;
+  border-width: 8px;
+  border-style: solid;
+  border-image: linear-gradient(white, yellow) 1;
+}
+
 body {
   background-color: lightsalmon;
+  transition: background-color 1s ease;
 }
 
 .dark {
   background-color: black;
+  transition: background-color 1s ease;
 }
