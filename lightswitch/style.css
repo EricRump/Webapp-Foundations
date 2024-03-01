@@ -1,0 +1,17 @@
+#lightswitch {
+  padding: 1rem;
+  font-size: 3rem;
+  border: 5px solid yellow;
+  background-color: lightgreen;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+
+body {
+  background-color: lightsalmon;
+}
+
+.dark {
+  background-color: black;
+}
