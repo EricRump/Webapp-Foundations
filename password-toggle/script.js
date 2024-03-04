@@ -10,6 +10,6 @@ button.addEventListener("click", function () {
   } else if (input.getAttribute("type") === "password") {
     input.setAttribute("type", "text");
     button.textContent = "Hide password";
-    div.classList.toggle("passwort");
+    div.removeAttribute("passwort");
   }
 });

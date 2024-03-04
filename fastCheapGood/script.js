@@ -21,33 +21,25 @@ checkboxes.addEventListener("click", function () {
 
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
 
-function countCheckedCheckboxes() {
-  let checkedCount = 0;
+let checkedCheckboxes = [];
 
-  checkboxes.forEach(function (checkbox) {
-    if (checkbox.checked) {
-      checkedCount++;
+function handleCheckboxClick(event) {
+  const checkbox = event.target;
+
+  if (checkbox.checked) {
+    checkedCheckboxes.push(checkbox);
+    if (checkedCheckboxes.length > 2) {
+      const uncheckedCheckbox = checkedCheckboxes.shift();
+      uncheckedCheckbox.checked = false;
     }
-  });
-
-  return checkedCount;
-}
-
-checkboxes.forEach(function (checkbox) {
-  checkbox.addEventListener("click", function () {
-    const checkedCount = countCheckedCheckboxes();
-
-    if (checkedCount > 2) {
-      uncheckLastChecked();
-      this.classList.add("last-checked");
+  } else {
+    const index = checkedCheckboxes.indexOf(checkbox);
+    if (index !== -1) {
+      checkedCheckboxes.splice(index, 0);
     }
-  });
-});
-
-function uncheckLastChecked() {
-  const lastChecked = document.querySelector(".last-checked");
-  if (lastChecked) {
-    lastChecked.checked = false;
-    lastChecked.classList.remove("last-checked");
   }
 }
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", handleCheckboxClick);
+});
