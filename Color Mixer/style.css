@@ -6,10 +6,13 @@ html {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
   background-color: lightsalmon;
   padding: 3rem;
+}
+
+div {
+  display: flex;
+  justify-content: space-between;
 }
 
 input[type="range"] {
