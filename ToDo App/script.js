@@ -1,29 +1,28 @@
+document.addEventListener("DOMContentLoaded", function () {
+  loadFromLocalStorage();
+  addToList();
+});
+
 // neue ToDos mit button hinzufügen
 const add = document.querySelector(".add");
 const liste = document.querySelector(".liste");
-let todos = {};
-let id = 1;
+let todos = [];
+let id = todos.length + 1;
 
 loadFromLocalStorage();
 add.addEventListener("click", addToList);
 
 function addToList() {
   const input = document.querySelector(".input").value;
-  todos[input] = {
-    description: input,
-    ID: id,
-    open: true,
-  };
-  id++;
-
-  // Liste leeren, um Duplikate zu vermeiden
+  if (input !== "") {
+    todos.push({ description: input, ID: id, open: true });
+  }
   liste.innerHTML = "";
-  // hinzufügen der Todos zur Liste
-  Object.keys(todos).forEach(function (i) {
-    let todo = todos[i];
+
+  // hinzufügen der Todos zur Liste und checkbox davor
+  todos.forEach(function (todo) {
     const listItem = document.createElement("li");
 
-    //checkbox hinzufügen
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     const span = document.createElement("span");
@@ -47,7 +46,13 @@ function loadFromLocalStorage() {
 function saveToLocalStorage() {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
-document.addEventListener("DOMContentLoaded", function () {
-  loadFromLocalStorage();
-  addToList();
+
+const checkboxinliste = document.querySelectorAll(".liste[type='checkbox']");
+
+checkboxinliste.forEach(function (checkbox) {
+  checkbox.addEventListener("click", removeDoneToDos);
 });
+
+function removeDoneToDos() {
+  console.log("hallo");
+}
