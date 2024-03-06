@@ -4,14 +4,17 @@ const liste = document.querySelector(".liste");
 let todos = {};
 let id = 1;
 
-add.addEventListener("click", function () {
+loadFromLocalStorage();
+add.addEventListener("click", addToList);
+
+function addToList() {
   const input = document.querySelector(".input").value;
   todos[input] = {
     description: input,
     ID: id,
+    open: true,
   };
   id++;
-  console.log(todos);
 
   // Liste leeren, um Duplikate zu vermeiden
   liste.innerHTML = "";
@@ -30,4 +33,21 @@ add.addEventListener("click", function () {
     listItem.appendChild(span);
     liste.appendChild(listItem);
   });
+  saveToLocalStorage();
+}
+
+// Funktion zum Laden des Local Storage
+function loadFromLocalStorage() {
+  if (localStorage.getItem("todos")) {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+}
+
+// Funktion zum Speichern der Todos im Local Storage
+function saveToLocalStorage() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+document.addEventListener("DOMContentLoaded", function () {
+  loadFromLocalStorage();
+  addToList();
 });
