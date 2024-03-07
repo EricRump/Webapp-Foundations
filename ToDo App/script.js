@@ -31,16 +31,24 @@ function saveToLocalStorage() {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-// neue ToDos mit button hinzufügen
+// neue ToDos mit button zum array hinzufügen
 loadFromLocalStorage();
 add.addEventListener("click", addToList);
 
 function addToList() {
   const input = document.querySelector(".input").value;
   if (input !== "") {
-    todos.push({ description: input, ID: id, done: true });
-    renderToDos();
-    id++;
+    const existingTodo = todos.find(
+      (todo) => todo.description.toLowerCase() === input.toLowerCase()
+    );
+    if (!existingTodo) {
+      todos.push({ description: input, ID: id, done: false });
+      renderToDos();
+      id++;
+      document.querySelector(".input").value = "";
+    } else {
+      console.log("Das Element ist bereits in der Liste vorhanden.");
+    }
   }
 }
 
@@ -87,21 +95,3 @@ removeButton.addEventListener("click", function () {
   renderToDos();
   saveToLocalStorage();
 });
-
-/*function removeDoneToDos() {
-  checkboxinliste.forEach(function (checkbox) {
-    if (checkbox.checked) {
-      const index = parseInt(checkbox.parentElement.dataset.index);
-      todos[index].open = false;
-    } else {
-      todos[index].open = true;
-    }
-  });
-  renderToDos();
-  saveToLocalStorage();
-  console.log("hallo");
-}
-
-// RemoveButton
-const removeButton = document.querySelector("removeButton");
-removeButton.addEventListener("click", function () {});*/
