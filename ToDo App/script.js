@@ -1,7 +1,6 @@
 const add = document.querySelector(".add");
 const liste = document.querySelector(".liste");
 let todos = [{ description: "", ID: 0, done: false }];
-let id = 1;
 const checkboxinliste = document.querySelectorAll(".check");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadFromLocalStorage() {
   if (localStorage.getItem("todos")) {
     todos = JSON.parse(localStorage.getItem("todos"));
-    id = todos.length + 1;
     renderToDos();
     addcheckListener();
   }
@@ -42,9 +40,12 @@ function addToList() {
       (todo) => todo.description.toLowerCase() === input.toLowerCase()
     );
     if (!existingTodo) {
-      todos.push({ description: input, ID: id, done: false });
+      todos.push({
+        description: input,
+        ID: Math.floor(Math.random() * 9999999999),
+        done: false,
+      });
       renderToDos();
-      id++;
       document.querySelector(".input").value = "";
     } else {
       console.log("Das Element ist bereits in der Liste vorhanden.");
@@ -94,4 +95,35 @@ removeButton.addEventListener("click", function () {
   });
   renderToDos();
   saveToLocalStorage();
+});
+
+// Filter
+const all = document.querySelector(".all");
+const open = document.querySelector(".open");
+const done = document.querySelector(".done");
+const radiobuttons = document.querySelectorAll(".radio");
+
+let checkedRadio = null;
+
+radiobuttons.forEach((radio) => {
+  radio.addEventListener("click", function () {
+    if (checkedRadio !== null) {
+      checkedRadio.checked = false;
+    }
+
+    if (this === all && all.checked) {
+      open.checked = false;
+      done.checked = false;
+    }
+    if (this === open && open.checked) {
+      all.checked = false;
+      done.checked = false;
+    }
+    if (this === done && done.checked) {
+      all.checked = false;
+      open.checked = false;
+    }
+
+    checkedRadio = this;
+  });
 });
