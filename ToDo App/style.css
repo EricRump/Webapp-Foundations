@@ -6,3 +6,11 @@
 .done .aufgabe:has(input:checked) {
   display: none;
 }
+
+.open .aufgabe:not(:has(input:checked)) {
+  display: none;
+}
+
+.all .aufgabe {
+  display: block;
+}

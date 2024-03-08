@@ -98,31 +98,13 @@ removeButton.addEventListener("click", function () {
 });
 
 // Filter
-const all = document.querySelector(".all");
-const open = document.querySelector(".open");
-const done = document.querySelector(".done");
-const aufgaben = document.querySelectorAll(".aufgabe");
 const radiobuttons = document.querySelectorAll(".radio");
 
 radiobuttons.forEach(function (radio) {
   radio.addEventListener("change", function () {
+    liste.classList.remove("all");
+    liste.classList.remove("open");
+    liste.classList.remove("done");
     liste.classList.add(radio.value);
-    /* aufgaben.forEach(function (aufgabe, index) {
-      console.log(index, radio.value, todos[index]);
-
-      if (radio.value === "all") {
-        console.log("all");
-        aufgabe.classList.remove("hidden");
-      } else if (radio.value === "open" && !todos[index].done) {
-        console.log("open");
-        aufgabe.classList.remove("hidden");
-      } else if (radio.value === "done" && todos[index].done) {
-        console.log("done");
-        aufgabe.classList.remove("hidden");
-      } else {
-        console.log("add");
-        aufgabe.classList.add("hidden");
-      }
-    });*/
   });
 });
