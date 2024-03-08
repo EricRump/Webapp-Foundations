@@ -1,0 +1,8 @@
+/*.done input:checked,
+.done input:checked + span {
+  display: none;
+}*/
+
+.done .aufgabe:has(input:checked) {
+  display: none;
+}

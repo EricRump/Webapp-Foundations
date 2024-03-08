@@ -59,7 +59,7 @@ function renderToDos() {
 
   todos.forEach(function (todo) {
     const listItem = document.createElement("li");
-
+    listItem.classList.add("aufgabe");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.classList.add("check");
@@ -101,29 +101,28 @@ removeButton.addEventListener("click", function () {
 const all = document.querySelector(".all");
 const open = document.querySelector(".open");
 const done = document.querySelector(".done");
+const aufgaben = document.querySelectorAll(".aufgabe");
 const radiobuttons = document.querySelectorAll(".radio");
 
-let checkedRadio = null;
+radiobuttons.forEach(function (radio) {
+  radio.addEventListener("change", function () {
+    liste.classList.add(radio.value);
+    /* aufgaben.forEach(function (aufgabe, index) {
+      console.log(index, radio.value, todos[index]);
 
-radiobuttons.forEach((radio) => {
-  radio.addEventListener("click", function () {
-    if (checkedRadio !== null) {
-      checkedRadio.checked = false;
-    }
-
-    if (this === all && all.checked) {
-      open.checked = false;
-      done.checked = false;
-    }
-    if (this === open && open.checked) {
-      all.checked = false;
-      done.checked = false;
-    }
-    if (this === done && done.checked) {
-      all.checked = false;
-      open.checked = false;
-    }
-
-    checkedRadio = this;
+      if (radio.value === "all") {
+        console.log("all");
+        aufgabe.classList.remove("hidden");
+      } else if (radio.value === "open" && !todos[index].done) {
+        console.log("open");
+        aufgabe.classList.remove("hidden");
+      } else if (radio.value === "done" && todos[index].done) {
+        console.log("done");
+        aufgabe.classList.remove("hidden");
+      } else {
+        console.log("add");
+        aufgabe.classList.add("hidden");
+      }
+    });*/
   });
 });
