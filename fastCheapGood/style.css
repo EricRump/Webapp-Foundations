@@ -1,0 +1,13 @@
+body {
+  background-color: red;
+  display: flex;
+}
+
+div {
+  display: flex;
+}
+
+input {
+  margin: 2rem;
+  border: 3px solid black;
+}

@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: lightskyblue;
+  padding: 3rem;
+}
+
+.button {
+  padding: 1.5rem;
+  background-color: blue;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+main {
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: lightsalmon;
+  margin: 1rem;
+}
